@@ -20,6 +20,7 @@ public class OrderServiceImpl implements OrderService{
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
+    //생성자가 한개일 경우에만 @Autowired 생략 가능
     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
@@ -43,5 +44,6 @@ public class OrderServiceImpl implements OrderService{
     public MemberRepository getMemberRepository(){
         return memberRepository;
     }
+
 
 }
