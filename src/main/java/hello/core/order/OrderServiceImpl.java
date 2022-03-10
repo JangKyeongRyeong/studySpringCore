@@ -1,9 +1,11 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,12 +19,13 @@ public class OrderServiceImpl implements OrderService{
     /**
      * DIP 준수
      */
+    // final 붙으면 필수값이 된다.
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
-    //생성자가 한개일 경우에만 @Autowired 생략 가능
+    //@RequiredArgsConstructor 이 final붙은 인자로 생성자를 자동으로 만들어줌
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
